@@ -6,7 +6,6 @@ if (Meteor.isServer) {
 }
 
 Entries = new Meteor.Collection("entries");
-// Publish complete set of lists to all clients.
 Meteor.publish('entries', function () {
   return Entries.find();
 });

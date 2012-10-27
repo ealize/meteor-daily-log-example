@@ -14,21 +14,37 @@
     {{#each entries}}
       <div class="entry {{selected}}">
         {{#if editing}}
-          <div class="edit" style="background-color: red">
-            <input class="entry-name-input" id="entry-name-input"  type="text" value="{{text}}" />
-          </div>
+        <div class="editing editForm">
+          {{> entryform}}
+        </div>
         {{else}}
           <div class="display">
-            <a class="entry-name {{text_class}}" href="/{{_id}}">
-              {{text}}
+            <a class="entry-day {{text_class}}" href="/{{_id}}">
+              {{day}}
             </a>
-			<div class="destroy" style="display:inline-block; cursor:pointer;">X</div>
+      			<div class="destroy" style="display:inline-block; cursor:pointer;">  -- delete</div>
           </div>
         {{/if}}
       </div>
     {{/each}}
   </div>
-  <div id="createEntry">
-    <input type="text" id="new-entry" placeholder="Add Entry" />
+  <div>
+    {{#unless editing}}
+      <div class="editLink"> Add New </div>
+      <div class="editForm"> {{> entryform}}</div>
+    {{/unless}}
+  </div>
+
+</template>
+
+<template name="entryform">
+  <div>
+    <div>
+      Date: <input class="entry-day-input" id="entry-day-input" type="text" value="{{day}}" />
+      <br>
+      Log: <textarea rows=20 cols=50 class="entry-log-input" id="entry-log-input" >{{log}}</textarea>
+      <br>
+      <button class="btnCloseEdit">Close</button><button class="btnAddNewEntry">Save</button>
+    </div>    
   </div>
 </template>
