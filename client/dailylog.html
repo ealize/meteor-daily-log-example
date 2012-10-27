@@ -1,0 +1,34 @@
+<head>
+  <title>Entries</title>
+</head>
+
+<body>
+	<div id="side-pane1">
+		{{> entries}}
+	</div>
+</body>
+
+<template name="entries">
+  <h3></h3>
+  <div id="entries">
+    {{#each entries}}
+      <div class="entry {{selected}}">
+        {{#if editing}}
+          <div class="edit" style="background-color: red">
+            <input class="entry-name-input" id="entry-name-input"  type="text" value="{{text}}" />
+          </div>
+        {{else}}
+          <div class="display">
+            <a class="entry-name {{text_class}}" href="/{{_id}}">
+              {{text}}
+            </a>
+			<div class="destroy" style="display:inline-block; cursor:pointer;">X</div>
+          </div>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+  <div id="createEntry">
+    <input type="text" id="new-entry" placeholder="Add Entry" />
+  </div>
+</template>
